@@ -32,9 +32,9 @@ public class Alphone extends MIDlet implements CommandListener{
 
     private String[] reasultAlphone;
 
-    // Here you should fill your contacts
+    // Here you should add your contacts in format: "first_name phonenumber"
     private String[] alphoneList = {
-        "jhon doe 14255551212"
+        "jhon_doe 14255551212"
     };
 
     private int ALPHONE_LENGTH = alphoneList.length;
@@ -121,11 +121,10 @@ public class Alphone extends MIDlet implements CommandListener{
     }
 
     private void Dial(){
-        String call=reasultAlphone[relevantContactsScreen.getSelectedIndex()];
-	int COMMON_PHONENUMBER_LENGTH = 10;// TODO: make phonecall Suitable for numbers of variable length
-        call = call.substring(call.length() - COMMON_PHONENUMBER_LENGTH);
+        String contact=reasultAlphone[relevantContactsScreen.getSelectedIndex()];
+        String phone_number = contact.substring(contact.indexOf(' ')+1);
         try {
-            platformRequest("tel:" + call);
+            platformRequest("tel:" + phone_number);
         } catch (ConnectionNotFoundException ex) {
             ex.printStackTrace();
         }
